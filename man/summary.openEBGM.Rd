@@ -4,7 +4,8 @@
 \alias{summary.openEBGM}
 \title{Summarize an openEBGM object}
 \usage{
-\method{summary}{openEBGM}(object, plot.out = TRUE, log.trans = FALSE, ...)
+\method{summary}{openEBGM}(object, plot.out = TRUE, log.trans = FALSE,
+  ...)
 }
 \arguments{
 \item{object}{An openEBGM object constructed by \code{\link{ebScores}}}
@@ -41,8 +42,8 @@ theta_init <- data.frame(alpha1 = c(0.2, 0.1),
                          )
 data(caers)
 proc <- processRaw(caers)
-squashed <- squashData(proc, bin_size = 100, keep_bins = 1)
-squashed <- squashData(squashed, count = 2, bin_size = 10)
+squashed <- squashData(proc, bin_size = 100, keep_pts = 100)
+squashed <- squashData(squashed, count = 2, bin_size = 10, keep_pts = 20)
 suppressWarnings(
   hypers <- autoHyper(data = squashed, theta_init = theta_init)
 )

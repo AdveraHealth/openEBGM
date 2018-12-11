@@ -4,14 +4,14 @@
 \alias{autoHyper}
 \title{Semi-automated hyperparameter estimation}
 \usage{
-autoHyper(data, theta_init, squashed = TRUE, zeroes = FALSE, N_star = 1,
-  tol = c(0.05, 0.05, 0.2, 0.2, 0.025), min_conv = 1, param_limit = 100,
-  max_pts = 20000, conf_ints = FALSE, conf_level = c("95", "80", "90",
-  "99"))
+autoHyper(data, theta_init, squashed = TRUE, zeroes = FALSE,
+  N_star = 1, tol = c(0.05, 0.05, 0.2, 0.2, 0.025), min_conv = 1,
+  param_limit = 100, max_pts = 20000, conf_ints = FALSE,
+  conf_level = c("95", "80", "90", "99"))
 }
 \arguments{
-\item{data}{A data frame containing columns named \emph{N}, \emph{E},
-and (if squashed) \emph{weight}.}
+\item{data}{A data frame from \code{\link{processRaw}} containing columns
+named \emph{N}, \emph{E}, and (if squashed) \emph{weight}.}
 
 \item{theta_init}{A data frame of initial hyperparameter guesses with
 columns ordered as:
@@ -111,8 +111,8 @@ theta_init <- data.frame(
 )
 data(caers)
 proc <- processRaw(caers)
-squashed <- squashData(proc, bin_size = 100, keep_bins = 1)
-squashed <- squashData(squashed, count = 2, bin_size = 10)
+squashed <- squashData(proc, bin_size = 100, keep_pts = 100)
+squashed <- squashData(squashed, count = 2, bin_size = 10, keep_pts = 20)
 suppressWarnings(
   autoHyper(squashed, theta_init = theta_init)
 )
@@ -129,6 +129,8 @@ DuMouchel W (1999). "Bayesian Data Mining in Large Frequency
 
 \code{\link{squashData}} for data preparation
 
-Other hyperparameter estimation functions: \code{\link{exploreHypers}}
+Other hyperparameter estimation functions: \code{\link{exploreHypers}},
+  \code{\link{hyperEM}}
 }
+\concept{hyperparameter estimation functions}
 \keyword{openEBGM}

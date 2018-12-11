@@ -4,8 +4,8 @@
 \alias{quantBisect}
 \title{Find quantiles of the posterior distribution}
 \usage{
-quantBisect(percent, theta_hat, N, E, qn, digits = 2, limits = c(-1e+05,
-  1e+05), max_iter = 2000)
+quantBisect(percent, theta_hat, N, E, qn, digits = 2,
+  limits = c(-1e+05, 1e+05), max_iter = 2000)
 }
 \arguments{
 \item{percent}{A numeric scalar between 1 and 99 for the desired
@@ -78,8 +78,8 @@ theta_init <- data.frame(
 )
 data(caers)
 proc <- processRaw(caers)
-squashed <- squashData(proc, bin_size = 100, keep_bins = 1)
-squashed <- squashData(squashed, count = 2, bin_size = 10)
+squashed <- squashData(proc, bin_size = 100, keep_pts = 100)
+squashed <- squashData(squashed, count = 2, bin_size = 10, keep_pts = 20)
 suppressWarnings(
   theta_hat <- autoHyper(data = squashed, theta_init = theta_init)$estimates
 )
@@ -106,4 +106,5 @@ head(proc)
 Other posterior distribution functions: \code{\link{Qn}},
   \code{\link{ebgm}}
 }
+\concept{posterior distribution functions}
 \keyword{openEBGM}
