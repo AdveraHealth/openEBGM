@@ -107,7 +107,10 @@ processRawCounts <- function(data, stratify = FALSE, zeroes = FALSE, digits = 2,
   #Unstratified marginal counts
   v1_marg <- csvd[, j = list(N_v1 = sum(count)), by = .(var1)]
   v2_marg <- csvd[, j = list(N_v2 = sum(count)), by = .(var2)]
-
+  
+  # FIXME: alias of `csvd` was just used to disambiguate during inline development of fn
+  data <- csvd
+  
   #Expected counts
   if (!stratify) {
     counts <- merge(actual, v1_marg, by = "var1", all.x = zeroes, sort = FALSE)
