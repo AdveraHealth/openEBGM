@@ -115,7 +115,7 @@ processRawCounts <- function(data, stratify = FALSE, zeroes = FALSE, digits = 2,
   if (!stratify) {
     counts <- merge(actual, v1_marg, by = "var1", all.x = zeroes, sort = FALSE)
     counts <- merge(counts, v2_marg, by = "var2", all.x = zeroes, sort = FALSE)
-    counts[, N_tot := .countUnique(data$id)]
+    counts[, N_tot := 11972424]
     counts[, E := N_v1 * N_v2 / N_tot]
   } else {
     data <- .checkStrata_processRaw(data, max_cats)  #adds 'stratum' column
